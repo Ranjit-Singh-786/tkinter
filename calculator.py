@@ -29,7 +29,7 @@ def click(event):
 
 root = Tk()
 root.geometry("644x970")
-root.title("Calculator By CodeWithHarry")
+root.title("Calculator By Ranjit Singh")
 root.iconbitmap("twiter.ico")
 
 scvalue = StringVar()

@@ -8,7 +8,12 @@ root.iconbitmap('twiter.ico')
 def func():
     x = var.get()
     lb.config(text=x,bg='green')
-    
+
+
+def get_check1():
+    bt_value = bt1.get()
+    lb_for_check.config(text=bt_value)
+
 lb = Label(root,text="Hello, World !",background='black',foreground='white',border='50')
 lb.place(x='50',y='120')
 
@@ -28,7 +33,7 @@ entr.place(x='50',y='80')
 
 # >>>>>>>>> creating button
 
-button = Button(root, text='click here', width=25,command=func)
+button = Button(root, text='click for entry value', width=25,command=func)
 button.pack()
 button.place(y='10')
 
@@ -43,12 +48,45 @@ def func2():
 
 comb_var = StringVar()
 comb = ttk.Combobox(root,font='lucida 40 bold',textvariable=comb_var)
-comb['values'] = ('jan','fab','march','april')
+comb['state']= 'readonly'
+comb['values'] = ('jan','fab','march','april','may','jun')
+comb.current(0)
 comb.pack()
 
 
 button = Button(root, text='for comb value', width=25,command=func2)
 button.pack()
+
+
+### >>>>>>>>>>> check button
+
+
+
+bt1 = IntVar()
+bt2 = IntVar()
+
+
+btn1 = Checkbutton(root,text="Male",variable=bt1,onvalue=0,offvalue=1)
+btn2 = Checkbutton(root,text="Female" , variable=bt2,onvalue=1,offvalue=0)
+btn2.pack()
+btn1.pack()
+
+lb_for_check = Label(root,text='check values')
+lb_for_check.pack()
+
+chek_bton = Button(root,text='get check result',command=get_check1)
+chek_bton.pack()
+
+
+### >>>>>>>>>>> radio button
+
+
+
+rdb1 = Radiobutton(root,text="accept",value=0)
+rdb2 = Radiobutton(root,text="accept",value=1)
+
+rdb1.pack()
+rdb2.pack()
 
 
 root.mainloop()
