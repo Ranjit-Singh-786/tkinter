@@ -12,10 +12,11 @@
 - 9.Frame()
 - 10.Label()
 - 11.Entry()
-- .
-- .
-- .
-- .etc
+- 12.messagebox()
+- 13.Listbox()
+- 14.Canvas()
+- 15.Top level()
+- 16.Destroy()
 
 
 # Projects using Tkinter

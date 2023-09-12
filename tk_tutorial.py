@@ -1,9 +1,17 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 root = Tk()
 
 root.title('Twiter')
 root.iconbitmap('twiter.ico')
+
+def show_box():
+    inpt = input_var.get()
+    if inpt == "":
+        messagebox.showwarning('Warning','please enter something')
+    else:
+        messagebox.showinfo('you written',inpt)
 
 def func():
     x = var.get()
@@ -87,6 +95,50 @@ rdb2 = Radiobutton(root,text="accept",value=1)
 
 rdb1.pack()
 rdb2.pack()
+
+
+
+### >>>>> frame
+
+top_frame = Frame(root)
+bottom_frame = Frame(root)
+
+top_frame.pack(side=TOP)
+bottom_frame.pack(side=BOTTOM)
+
+Label(top_frame,text='Top label in top frame',font='arial 28 bold',background='red').pack()
+Label(bottom_frame,text='bottom label in bottom frame',font='arial 28 bold',bg='green').pack()
+
+
+
+### >>>>>>>>>>messagebox
+
+# from tkinter import messagebox
+# 1.showinfo()
+# 2.showwarning()
+# 3.showerror()
+# 4.askretrycancel()
+# 5.askquestion()
+# 6.askokcancel()
+# 7.askyesno()
+
+input_var = StringVar()
+en = Entry(root,textvariable=input_var)
+en.pack()
+
+Button(root,text='Click Me for message box',command=show_box).pack()
+
+
+## >>>>>>>> Listbox
+# lst.delete(ANCHOR)  also create a button to delet selected from a list
+
+lstbox = Listbox(root,)
+lstbox.pack()
+months = ['jan','fab','march','april','may','jun']
+
+for month in months:
+    lstbox.insert(END,month,)
+
 
 
 root.mainloop()
