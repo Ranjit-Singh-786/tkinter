@@ -17,6 +17,12 @@
 - .
 - .etc
 
+
+# Projects using Tkinter
+- 1. Calculator
+- 2. BMI calculator
+- 3. Email sender Client
+
 # Converting .py to .exe using PyInstaller
 
 

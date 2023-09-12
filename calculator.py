@@ -1,134 +1,55 @@
+import tkinter as tk
 
-from tkinter import *
+def click_button(value):
+    current = str(entry.get())
+    entry.delete(0, tk.END)
+    entry.insert(0, current + value)
 
-def click(event):
-    global scvalue
-    text = event.widget.cget("text")
-    if text == "=":
-        if scvalue.get().isdigit():
-            value = int(scvalue.get())
-        else:
-            try:
-                value = eval(screen.get())
+def clear_entry():
+    entry.delete(0, tk.END)
 
-            except Exception as e:
-                print(e)
-                value = "Error"
+def calculate():
+    try:
+        result = eval(entry.get())
+        entry.delete(0, tk.END)
+        entry.insert(0, str(result))
+    except Exception as e:
+        entry.delete(0, tk.END)
+        entry.insert(0, "Error")
 
+# Create the main window
+root = tk.Tk()
+root.title("Calculator")
 
-        scvalue.set(value)
-        screen.update()
+# Create an entry widget for displaying the result
+entry = tk.Entry(root, width=16, font=('Arial', 20), borderwidth=2, relief="solid")
+entry.grid(row=0, column=0, columnspan=4)
 
-    elif text == "C":
-        scvalue.set("")
-        screen.update()
+# Define buttons
+buttons = [
+    '7', '8', '9', '/',
+    '4', '5', '6', '*',
+    '1', '2', '3', '-',
+    'C', '0', '=', '+'
+]
 
-    else:
-        scvalue.set(scvalue.get() + text)
-        screen.update()
+# Add buttons to the grid
+row = 1
+col = 0
 
-root = Tk()
-root.geometry("644x970")
-root.title("Calculator By Ranjit Singh")
-root.iconbitmap("twiter.ico")
+for button in buttons:
+    tk.Button(root, text=button, padx=20, pady=20, font=('Arial', 15),
+              command=lambda button=button: click_button(button)).grid(row=row, column=col)
+    col += 1
+    if col > 3:
+        col = 0
+        row += 1
 
-scvalue = StringVar()
-scvalue.set("")
-screen = Entry(root, textvar=scvalue, font="lucida 40 bold")
-screen.pack(fill=X, ipadx=8, pady=10, padx=10)
+# Clear button
+tk.Button(root, text='Clear', padx=20, pady=20, font=('Arial', 15), command=clear_entry).grid(row=row, column=col)
 
-f = Frame(root, bg="grey")
-b = Button(f, text="9", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
+# Equal button
+tk.Button(root, text='=', padx=20, pady=20, font=('Arial', 15), command=calculate).grid(row=row, column=col + 1)
 
-b = Button(f, text="8", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="7", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-f.pack()
-
-
-f = Frame(root, bg="grey")
-b = Button(f, text="6", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="5", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="4", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-f.pack()
-
-
-f = Frame(root, bg="grey")
-b = Button(f, text="3", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="2", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="1", padx=28, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-f.pack()
-
-
-f = Frame(root, bg="grey")
-b = Button(f, text="0", padx=31, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="-", padx=31, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="*", padx=31, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-f.pack()
-
-
-f = Frame(root, bg="grey")
-b = Button(f, text="/", padx=33, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="%", padx=21, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="=", padx=27, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-f.pack()
-
-f = Frame(root, bg="grey")
-b = Button(f, text="C", padx=26, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text=".", padx=26, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-b = Button(f, text="00", padx=26, pady=18, font="lucida 35 bold")
-b.pack(side=LEFT, padx=18, pady=5)
-b.bind("", click)
-
-f.pack()
-
+# Run the main loop
 root.mainloop()
