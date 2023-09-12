@@ -1,4 +1,4 @@
-# tkinter
+# Tkinter and Turtle 
 
 ## Tkinter functions
 - 1.title()
@@ -33,5 +33,7 @@
 
    cd /path/to/your/project
 
-   pyinstaller --onefile your_script.py
+   pyinstaller your_script.py --onefile 
+
+Thank You 🙂
 
